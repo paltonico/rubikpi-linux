@@ -3530,7 +3530,7 @@ static int camss_configure_pd(struct camss *camss)
 	}
 
 	ret = devm_pm_opp_of_add_table(camss->dev);
-	if (ret) {
+	if (ret && ret != -ENODEV) {
 		dev_err(dev, "devm_pm_opp_of_add_table failed %d\n", ret);
 		device_link_del(camss->genpd_link);
 		goto fail_pm;
